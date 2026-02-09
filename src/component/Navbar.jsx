@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
+import logo from "../assets/logo.png";
 
 export default function Navbar() {
   const { isLoggedIn, user, logout } = useAuth();
@@ -30,7 +31,7 @@ export default function Navbar() {
   return (
     <nav className="nav" role="navigation" aria-label="Main navigation">
       <Link to="/" className="logo" onClick={closeMenu}>
-        <img src="/src/assets/logo.png" alt="Travel Bharat Logo" />
+        <img src={logo} alt="Travel Bharat Logo" />
         <span className="travel">Travel</span>
         <span className="bharat">Bharat</span>
       </Link>
