@@ -39,8 +39,7 @@ export default function DestinationsPage() {
 
   return (
     <div style={{ paddingTop: "80px", background: "var(--paper)", minHeight: "100vh" }}>
-      {/* Header */}
-      <div style={{ 
+      <div style={{
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
         padding: "clamp(40px, 8vw, 60px) clamp(20px, 4vw, 40px)",
@@ -61,7 +60,6 @@ export default function DestinationsPage() {
         </p>
       </div>
 
-      {/* Search Bar */}
       <div style={{
         maxWidth: "800px",
         margin: "clamp(-20px, -3vw, -30px) auto 0",
@@ -87,7 +85,6 @@ export default function DestinationsPage() {
         />
       </div>
 
-      {/* Content */}
       <section style={{
         maxWidth: "1200px",
         margin: "0 auto",
@@ -95,7 +92,6 @@ export default function DestinationsPage() {
         width: "100%",
         boxSizing: "border-box"
       }}>
-        {/* Results Count */}
         <div style={{
           marginBottom: "clamp(20px, 4vw, 30px)",
           padding: "clamp(12px, 2vw, 16px)",
@@ -108,14 +104,12 @@ export default function DestinationsPage() {
           Found {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? "s" : ""}
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div style={{ textAlign: 'center', padding: '40px' }}>
             <p>Loading destinations...</p>
           </div>
         )}
 
-        {/* Error State */}
         {error && (
           <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
             <iframe
@@ -128,7 +122,7 @@ export default function DestinationsPage() {
           </div>
         )}
 
-        {/* Destinations Grid */}
+
         {!loading && !error && filteredDestinations.length > 0 ? (
           <div style={{
             display: "grid",
@@ -168,7 +162,6 @@ export default function DestinationsPage() {
                   e.currentTarget.style.transform = "translateY(0) scale(1)";
                   e.currentTarget.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.06)";
                 }}>
-                  {/* Image Container */}
                   <div style={{
                     width: "100%",
                     height: "200px",
@@ -193,7 +186,6 @@ export default function DestinationsPage() {
                       onMouseOut={(e) => e.target.style.transform = "scale(1)"}
                     />
                     
-                    {/* Overlay gradient */}
                     <div style={{
                       position: 'absolute',
                       top: 0,
@@ -204,7 +196,6 @@ export default function DestinationsPage() {
                       pointerEvents: 'none'
                     }}></div>
 
-                    {/* Category Badge */}
                     <div style={{
                       position: 'absolute',
                       top: '12px',
@@ -224,7 +215,6 @@ export default function DestinationsPage() {
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div style={{ 
                     padding: "20px", 
                     flex: 1, 
@@ -232,7 +222,7 @@ export default function DestinationsPage() {
                     flexDirection: "column",
                     justifyContent: "space-between"
                   }}>
-                    {/* Title & Location */}
+
                     <div style={{ marginBottom: "8px" }}>
                       <h3 style={{
                         fontFamily: "var(--heading)",
@@ -271,7 +261,6 @@ export default function DestinationsPage() {
                       {destination.description || 'Explore the beauty of this destination.'}
                     </p>
 
-                    {/* CTA Button */}
                     <div style={{
                       display: "inline-flex",
                       alignItems: "center",

@@ -23,7 +23,7 @@ export default function Admin() {
   const [sortStateOrder, setSortStateOrder] = useState('newest');
   const [filterStateType, setFilterStateType] = useState('all');
 
-  // Form states
+  // Form
   const [newDestination, setNewDestination] = useState({
     name: "",
     city: "",

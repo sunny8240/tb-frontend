@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import apiClient from "../services/api";
 import LottiePlaceholder from "../component/LottiePlaceholder";
 import { extractMapSrc } from "../utils/mapHelpers";
-import IconSvg from '../component/IconSvg'
+import IconSvg from '../component/IconSvg';
 
 export default function StateDestinations() {
   const { slug } = useParams();
@@ -12,6 +12,7 @@ export default function StateDestinations() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchStateAndDestinations = async () => {
@@ -80,7 +81,7 @@ export default function StateDestinations() {
 
   return (
     <div style={{ paddingTop: "80px", background: "var(--paper)" }}>
-      {/* Header */} 
+
       <section style={{
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
@@ -122,66 +123,121 @@ export default function StateDestinations() {
         </p>
       </section>
 
-      {/* State Overview */}
-      <section className="state-overview" style={{ padding: 'clamp(20px, 4vw, 28px) clamp(20px, 4vw, 40px)', maxWidth: '1100px', margin: '20px auto', display: 'grid', gridTemplateColumns: 'clamp(0px, calc(100% - 380px), 1fr) clamp(280px, 30%, 320px)', gap: 'clamp(16px, 3vw, 24px)', boxSizing: 'border-box' }}>
-        <div style={{ background: 'white', padding: 24, borderRadius: 12, boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
-          <h2 style={{ fontFamily: 'var(--heading)', marginTop: 0 }}>{state.name}</h2>
-          <p style={{ color: 'var(--muted)', lineHeight: 1.6 }}>{state.description}</p>
-          {extractMapSrc(state.mapLink) && (
-            <div style={{ marginTop: 16 }}>
-              <div className="responsive-iframe">
-                <iframe title="state-map" src={extractMapSrc(state.mapLink)} loading="lazy" />
-              </div>
+      <section style={{ padding: "clamp(32px, 8vw, 60px) clamp(16px, 6vw, 40px)", maxWidth: "960px", margin: "0 auto" }}>
+        <style>{`
+          .state-layout-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: clamp(28px, 6vw, 48px); 
+            align-items: start; 
+          }
+          @media (min-width: 900px) {
+            .state-layout-grid { grid-template-columns: 1fr 360px; }
+          }
+          @media (min-width: 1200px) {
+            .state-layout-grid { grid-template-columns: 1fr 420px; }
+          }
+        `}</style>
+        <div className="state-layout-grid">
+          <div>
+            <div style={{ marginBottom: "clamp(1.5rem, 4vw, 3rem)" }}>
+              <h2 style={{ fontFamily: "var(--heading)", fontSize: "clamp(1.4rem, 5vw, 1.9rem)", color: "var(--dark)", marginBottom: "16px", borderBottom: "3px solid var(--accent)", paddingBottom: "12px" }}>
+                Description
+              </h2>
+              <p style={{ fontSize: "clamp(0.95rem, 2vw, 1.05rem)", lineHeight: "1.8", color: "var(--muted)" }}>
+                {state.description}
+              </p>
             </div>
-          )}
-          {state.attractions && state.attractions.length > 0 && (
-            <div style={{ marginTop: 12 }}>
-              <strong>Top attractions:</strong>
-              <ul style={{ margin: '8px 0 0 16px' }}>
-                {state.attractions.slice(0, 5).map((a, i) => <li key={i} style={{ color: 'var(--muted)' }}>{a}</li>)}
-              </ul>
-            </div>
-          )}
-        </div>
 
-        <div className="state-vcard" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {state.images && state.images.slice(0, 2).map((img, i) => (
-            <div key={i} style={{ height: 160, borderRadius: 12, overflow: 'hidden', background: '#f0f0f0' }}>
-              <img 
-                src={img} 
-                alt={`${state.name} ${i}`} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                onError={(e) => e.target.src = '/error.svg'} 
-              />
+            {state.attractions && state.attractions.length > 0 && (
+              <div style={{ marginBottom: "clamp(1.5rem, 4vw, 3rem)" }}>
+                <h2 style={{ fontFamily: "var(--heading)", fontSize: "clamp(1.4rem, 5vw, 1.9rem)", color: "var(--dark)", marginBottom: "16px", borderBottom: "3px solid var(--accent)", paddingBottom: "12px" }}>
+                  Key Attractions
+                </h2>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(clamp(150px, 40vw, 180px), 1fr))", gap: "clamp(12px, 2vw, 16px)" }}>
+                  {state.attractions.slice(0, 6).map((a, i) => (
+                    <div key={i} style={{ background: "rgba(155, 74, 26, 0.08)", padding: "clamp(10px, 2vw, 14px)", borderRadius: "10px", border: "1px solid rgba(155, 74, 26, 0.15)" }}>
+                      <p style={{ margin: 0, fontSize: "clamp(0.85rem, 2vw, 0.95rem)", color: "var(--dark)", fontWeight: "500", lineHeight: "1.5" }}>{a}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {extractMapSrc(state.mapLink) && (
+              <div style={{ marginTop: "clamp(1.5rem, 4vw, 3rem)" }}>
+                <h2 style={{ fontFamily: "var(--heading)", fontSize: "clamp(1.4rem, 5vw, 1.9rem)", color: "var(--dark)", marginBottom: "16px", borderBottom: "3px solid var(--accent)", paddingBottom: "12px" }}>
+                  Location Map
+                </h2>
+                <div className="responsive-iframe" style={{ borderRadius: "12px", overflow: "hidden", boxShadow: "0 6px 18px rgba(0,0,0,0.08)" }}>
+                  <iframe title="state-map" src={extractMapSrc(state.mapLink)} loading="lazy" style={{ width: "100%", height: "350px", border: "none" }} />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(16px, 3vw, 20px)" }}>
+            {state.images && state.images.slice(0, 2).map((img, i) => (
+              <div key={i} style={{ height: "clamp(140px, 35vw, 180px)", borderRadius: "12px", overflow: "hidden", background: "#f0f0f0", boxShadow: "0 6px 18px rgba(0,0,0,0.08)", cursor: "pointer", transition: "var(--transition)" }} onMouseOver={(e) => e.currentTarget.style.transform = "scale(1.02)"} onMouseOut={(e) => e.currentTarget.style.transform = "scale(1)"} onClick={() => setSelectedImage(img)}>
+                <img 
+                  src={img} 
+                  alt={`${state.name} ${i}`} 
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                  onError={(e) => e.target.src = '/error.svg'} 
+                />
+              </div>
+            ))}
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "clamp(12px, 2vw, 16px)" }}>
+              {state.type && (
+                <div style={{ background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)", color: "var(--paper)", padding: "clamp(16px, 4vw, 24px)", borderRadius: "12px", boxShadow: "0 8px 24px rgba(155, 74, 26, 0.2)" }}>
+                  <div style={{ fontSize: "clamp(0.75rem, 2vw, 0.9rem)", fontWeight: "700", opacity: 0.85, marginBottom: "8px", letterSpacing: "0.5px" }}>TYPE</div>
+                  <div style={{ fontSize: "clamp(1.2rem, 3.5vw, 1.5rem)", fontWeight: "700", lineHeight: "1.3" }}>
+                    {state.type}
+                  </div>
+                </div>
+              )}
+
+              {state.capital && (
+                <div style={{ background: "linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(37, 99, 235, 0.95) 100%)", color: "white", padding: "clamp(16px, 4vw, 24px)", borderRadius: "12px", boxShadow: "0 8px 24px rgba(59, 130, 246, 0.2)" }}>
+                  <div style={{ fontSize: "clamp(0.75rem, 2vw, 0.9rem)", fontWeight: "700", opacity: 0.85, marginBottom: "8px", letterSpacing: "0.5px" }}>CAPITAL</div>
+                  <div style={{ fontSize: "clamp(1.2rem, 3.5vw, 1.5rem)", fontWeight: "700", lineHeight: "1.3" }}>
+                    {state.capital}
+                  </div>
+                </div>
+              )}
+
+              {state.area_km2 && (
+                <div style={{ background: "linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(22, 163, 74, 0.95) 100%)", color: "white", padding: "clamp(16px, 4vw, 24px)", borderRadius: "12px", boxShadow: "0 8px 24px rgba(34, 197, 94, 0.2)" }}>
+                  <div style={{ fontSize: "clamp(0.75rem, 2vw, 0.9rem)", fontWeight: "700", opacity: 0.85, marginBottom: "8px", letterSpacing: "0.5px" }}>AREA</div>
+                  <div style={{ fontSize: "clamp(1.2rem, 3.5vw, 1.5rem)", fontWeight: "700", lineHeight: "1.3" }}>
+                    {state.area_km2.toLocaleString()} km²
+                  </div>
+                </div>
+              )}
+
+              {state.bestTimeToVisit && (
+                <div style={{ background: "linear-gradient(135deg, rgba(251, 146, 60, 0.95) 0%, rgba(234, 88, 12, 0.95) 100%)", color: "white", padding: "clamp(16px, 4vw, 24px)", borderRadius: "12px", boxShadow: "0 8px 24px rgba(251, 146, 60, 0.2)" }}>
+                  <div style={{ fontSize: "clamp(0.75rem, 2vw, 0.9rem)", fontWeight: "700", opacity: 0.85, marginBottom: "8px", letterSpacing: "0.5px" }}>BEST TIME</div>
+                  <div style={{ fontSize: "clamp(1.05rem, 3vw, 1.25rem)", fontWeight: "600", lineHeight: "1.5" }}>
+                    {state.bestTimeToVisit}
+                  </div>
+                </div>
+              )}
             </div>
-          ))}
-          <div style={{ background: 'rgba(155,74,26,0.05)', padding: 12, borderRadius: 8 }}>
-            <div style={{ fontWeight: 700 }}>Type:</div>
-            <div style={{ color: 'var(--muted)' }}>{state.type}</div>
-            {state.capital && (
-              <>
-                <div style={{ marginTop: 8, fontWeight: 700 }}>Capital:</div>
-                <div style={{ color: 'var(--muted)' }}>{state.capital}</div>
-              </>
-            )}
-            {state.area_km2 && (
-              <>
-                <div style={{ marginTop: 8, fontWeight: 700 }}>Area:</div>
-                <div style={{ color: 'var(--muted)' }}>{state.area_km2.toLocaleString()} km²</div>
-              </>
-            )}
           </div>
         </div>
       </section>
 
-      {/* Content */}
-      <section style={{
-        padding: "clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px)",
-        maxWidth: "1300px",
-        margin: "0 auto",
-        width: "100%",
-        boxSizing: "border-box"
-      }}>
+      <section style={{ padding: "clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px)", maxWidth: "960px", margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ marginBottom: "clamp(24px, 6vw, 40px)", paddingBottom: "clamp(16px, 4vw, 24px)", borderBottom: "2px solid rgba(155, 74, 26, 0.15)" }}>
+          <h2 style={{ fontFamily: "var(--heading)", fontSize: "clamp(1.6rem, 6vw, 2.2rem)", color: "var(--dark)", margin: 0, marginBottom: "8px" }}>
+            Explore Destinations
+          </h2>
+          <p style={{ color: "var(--muted)", fontSize: "clamp(0.9rem, 2vw, 1rem)", margin: 0 }}>
+            {destinations.length} {destinations.length === 1 ? "destination" : "destinations"} to discover
+          </p>
+        </div>
         {destinations.length > 0 ? (
           <div style={{
             display: 'grid',
@@ -365,6 +421,26 @@ export default function StateDestinations() {
           </div>
         )}
       </section>
+
+      {selectedImage && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0, 0, 0, 0.85)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: "clamp(16px, 4vw, 32px)" }} onClick={() => setSelectedImage(null)}>
+          <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={selectedImage} 
+              alt="Full view" 
+              style={{ maxWidth: "100%", maxHeight: "100%", borderRadius: "12px", objectFit: "contain" }} 
+            />
+            <button 
+              onClick={() => setSelectedImage(null)} 
+              style={{ position: "absolute", top: "clamp(12px, 3vw, 20px)", right: "clamp(12px, 3vw, 20px)", background: "rgba(255, 255, 255, 0.9)", border: "none", width: "clamp(36px, 8vw, 48px)", height: "clamp(36px, 8vw, 48px)", borderRadius: "50%", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "clamp(1.2rem, 3vw, 1.8rem)", fontWeight: "700", color: "var(--dark)", transition: "var(--transition)" }} 
+              onMouseOver={(e) => e.target.style.background = "white"} 
+              onMouseOut={(e) => e.target.style.background = "rgba(255, 255, 255, 0.9)"}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

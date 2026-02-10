@@ -31,7 +31,6 @@ export default function DestinationDetail() {
         
         let nearby = [];
         
-        // Try to get nearby destinations by geolocation if coordinates exist
         if (data.latitude && data.longitude) {
           try {
             const nearbyResponse = await apiClient.destinations.getNearby(
@@ -106,9 +105,8 @@ export default function DestinationDetail() {
 
   return (
     <div style={{ paddingTop: "80px", background: "var(--paper)" }}>
-      {/* Back Button */}
-      <div style={{ 
-        padding: "clamp(12px, 4vw, 20px) clamp(16px, 8vw, 40px)", 
+      <div style={{
+        padding: "clamp(12px, 4vw, 20px) clamp(16px, 8vw, 40px)",
         maxWidth: "1200px", 
         margin: "0 auto" 
       }}>
@@ -132,18 +130,15 @@ export default function DestinationDetail() {
         </button>
       </div>
 
-      {/* Gallery Slider */}
       <div style={{ padding: "clamp(24px, 8vw, 40px) clamp(12px, 4vw, 20px)", background: "#f5f5f5" }}>
         <GallerySlider images={destination.images || []} title={destination.name} />
       </div>
 
-      {/* Content Section */}
       <section style={{
         maxWidth: "1200px",
         margin: "0 auto",
         padding: "clamp(32px, 8vw, 60px) clamp(16px, 6vw, 40px)"
       }}>
-        {/* Header */}
         <div style={{ marginBottom: "clamp(24px, 6vw, 40px)", textAlign: "center" }}>
           <h1 style={{
             fontFamily: "var(--heading)",
@@ -162,9 +157,7 @@ export default function DestinationDetail() {
           </p>
         </div>
 
-        {/* Main Content Grid */}
         <div className="destination-detail-grid">
-          {/* Left Column - Details */}
           <div>
             <div style={{ marginBottom: "clamp(1.5rem, 4vw, 3rem)" }}>
               <h2 style={{
@@ -279,7 +272,7 @@ export default function DestinationDetail() {
             </div>
           </div>
 
-          {/* Right Column - Info Cards */}
+
           <div>
             <div style={{
               background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",

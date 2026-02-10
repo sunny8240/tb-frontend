@@ -43,7 +43,6 @@ export default function States() {
 
   return (
     <div style={{ paddingTop: '80px', background: 'var(--paper)' }}>
-      {/* Header */}
       <section style={{
         background: 'linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)',
         color: 'var(--paper)',
@@ -62,7 +61,6 @@ export default function States() {
         </p>
       </section>
 
-      {/* Search Section */}
       <section style={{ padding: '40px', maxWidth: '1100px', margin: '0 auto' }}>
         <input
           type="text"
@@ -80,7 +78,6 @@ export default function States() {
         />
       </section>
 
-      {/* States Grid */}
       <section style={{
         padding: '40px 40px 60px',
         maxWidth: '1400px',
@@ -125,7 +122,6 @@ export default function States() {
                 e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
               }}
             >
-              {/* Image with Better Effects */}
               <div style={{ 
                 position: 'relative', 
                 height: '240px', 
@@ -147,7 +143,6 @@ export default function States() {
                       onMouseOver={(e) => e.target.style.transform = 'scale(1.12) rotate(0.5deg)'}
                       onMouseOut={(e) => e.target.style.transform = 'scale(1) rotate(0)'}
                     />
-                    {/* Shimmer overlay */}
                     <div style={{
                       position: 'absolute',
                       top: 0,
@@ -171,7 +166,6 @@ export default function States() {
                   </div>
                 )}
 
-                {/* Gradient overlay - more subtle */}
                 <div style={{
                   position: 'absolute',
                   top: 0,
@@ -182,7 +176,6 @@ export default function States() {
                   pointerEvents: 'none'
                 }}></div>
 
-                {/* Badge Container */}
                 <div style={{
                   position: 'absolute',
                   top: '16px',
@@ -208,7 +201,7 @@ export default function States() {
                   </div>
                 </div>
 
-                {/* Quick Stats - Bottom Left */}
+
                 {state.capital && (
                   <div style={{
                     position: 'absolute',
@@ -231,7 +224,6 @@ export default function States() {
                 )}
               </div>
 
-              {/* Content Section */}
               <div style={{ 
                 padding: '24px', 
                 flex: 1, 
@@ -239,7 +231,6 @@ export default function States() {
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}>
-                {/* Title and Description */}
                 <div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '12px' }}>
                     <h3 style={{
@@ -254,7 +245,7 @@ export default function States() {
                     </h3>
                   </div>
 
-                  {/* Description with better truncation */}
+
                   <p style={{
                     fontSize: '0.95rem',
                     color: '#6b7280',
@@ -271,7 +262,6 @@ export default function States() {
                   </p>
                 </div>
 
-                {/* CTA Button with Icon */}
                 <div style={{
                   marginTop: '16px'
                 }}>

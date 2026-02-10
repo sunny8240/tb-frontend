@@ -46,8 +46,6 @@ export default function DestinationExplorer() {
     fetchData();
   }, []);
 
-  
-  // Filter destinations based on search and filters
   useEffect(() => {
     let filtered = destinations;
 
@@ -72,7 +70,7 @@ export default function DestinationExplorer() {
 
   return (
     <div style={{ paddingTop: "80px", background: "var(--paper)" }}>
-      {/* Header */}
+
       <section style={{
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
@@ -96,7 +94,6 @@ export default function DestinationExplorer() {
         </p>
       </section>
 
-      {/* Search Section */}
       <section style={{
         padding: "clamp(26px, 5vw, 40px)",
         maxWidth: "1300px",
@@ -104,7 +101,6 @@ export default function DestinationExplorer() {
         width: "100%",
         boxSizing: "border-box"
       }}>
-        {/* Search Bar */}
         <div style={{ marginBottom: "clamp(20px, 4vw, 30px)" }}>
           <input
             type="text"
@@ -126,14 +122,13 @@ export default function DestinationExplorer() {
           />
         </div>
 
-        {/* Filter Section */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(clamp(200px, 80vw, 280px), 1fr))",
           gap: "clamp(12px, 3vw, 20px)",
           marginBottom: "clamp(24px, 6vw, 40px)"
         }}>
-          {/* Category Filter */}
+
           <div>
             <label style={{
               display: "block",
@@ -167,7 +162,6 @@ export default function DestinationExplorer() {
             </select>
           </div>
 
-          {/* State Filter */}
           <div>
             <label style={{
               display: "block",
@@ -201,7 +195,6 @@ export default function DestinationExplorer() {
             </select>
           </div>
 
-          {/* Reset Button */}
           <div style={{ display: "flex", alignItems: "flex-end" }}>
             <button
               onClick={() => {
@@ -230,7 +223,6 @@ export default function DestinationExplorer() {
           </div>
         </div>
 
-        {/* Results Count */}
         <div style={{
           marginBottom: "30px",
           padding: "16px",
@@ -242,14 +234,12 @@ export default function DestinationExplorer() {
           Found {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? "s" : ""}
         </div>
 
-        {/* Loading State */}
         {loading && (
           <div style={{ textAlign: 'center', padding: '40px' }}>
             <p>Loading destinations...</p>
           </div>
         )}
 
-        {/* Error State */}
         {error && (
           <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
             <iframe
@@ -262,7 +252,7 @@ export default function DestinationExplorer() {
           </div>
         )}
 
-        {/* Destinations Grid */}
+
         {!loading && !error && filteredDestinations.length > 0 ? (
           <div style={{
             display: "grid",
@@ -300,7 +290,6 @@ export default function DestinationExplorer() {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.1)";
                 }}>
-                  {/* Image */}
                   <div style={{
                     width: "100%",
                     height: "200px",
@@ -322,7 +311,6 @@ export default function DestinationExplorer() {
                     />
                   </div>
 
-                  {/* Content */}
                   <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
                     <div style={{ marginBottom: "8px" }}>
                       <h3 style={{
@@ -356,7 +344,7 @@ export default function DestinationExplorer() {
                       {destination.description?.substring(0, 100)}...
                     </p>
 
-                    {/* Category Badge */}
+
                     <div style={{
                       display: "inline-block",
                       background: "rgba(155, 74, 26, 0.1)",
