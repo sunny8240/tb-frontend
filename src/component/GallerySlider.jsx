@@ -36,7 +36,7 @@ export default function GallerySlider({ images, title }) {
           >
             {images.map((image, index) => (
               <div key={index} className="slide">
-                <img src={image} alt={`${title} ${index + 1}`} />
+                <img src={image} alt={`${title} ${index + 1}`} onError={(e) => { e.target.src = '/error.svg'; }} />
                 <div className="slide-label">{title}</div>
                 <div className="slide-number">
                   {index + 1} / {images.length}
@@ -53,7 +53,7 @@ export default function GallerySlider({ images, title }) {
               className={`thumbnail ${index === currentIndex ? "active" : ""}`}
               onClick={() => goToSlide(index)}
             >
-              <img src={image} alt={`Thumbnail ${index + 1}`} />
+              <img src={image} alt={`Thumbnail ${index + 1}`} onError={(e) => { e.target.src = '/error.svg'; }} />
             </div>
           ))}
         </div>

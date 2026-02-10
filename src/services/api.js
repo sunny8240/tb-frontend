@@ -22,14 +22,27 @@ export const apiClient = {
       config.body = JSON.stringify(body);
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || 'API Error');
-    }
+    try {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
+      
+      if (!response.ok) {
+        let errorMessage = 'API Error';
+        try {
+          const error = await response.json();
+          errorMessage = error.message || `Server Error: ${response.status}`;
+        } catch {
+          errorMessage = `Server Error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
+      }
 
-    return response.json();
+      return response.json();
+    } catch (err) {
+      if (err instanceof TypeError) {
+        throw new Error('Network error: Unable to connect to server. Please check your connection or try again later.');
+      }
+      throw err;
+    }
   },
 
   // States API

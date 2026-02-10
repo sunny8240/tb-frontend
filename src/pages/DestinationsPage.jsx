@@ -43,18 +43,18 @@ export default function DestinationsPage() {
       <div style={{ 
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
-        padding: "60px 40px",
+        padding: "clamp(40px, 8vw, 60px) clamp(20px, 4vw, 40px)",
         textAlign: "center"
       }}>
         <h1 style={{
           fontFamily: "var(--heading)",
-          fontSize: "3rem",
-          marginBottom: "12px"
+          fontSize: "clamp(2rem, 7vw, 3rem)",
+          marginBottom: "clamp(8px, 2vw, 12px)"
         }}>
           Explore All Destinations
         </h1>
         <p style={{
-          fontSize: "1.1rem",
+          fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)",
           opacity: 0.9
         }}>
           Discover the most beautiful and culturally rich destinations across India
@@ -64,8 +64,8 @@ export default function DestinationsPage() {
       {/* Search Bar */}
       <div style={{
         maxWidth: "800px",
-        margin: "-30px auto 0",
-        padding: "0 20px",
+        margin: "clamp(-20px, -3vw, -30px) auto 0",
+        padding: "0 clamp(12px, 3vw, 20px)",
         position: "relative",
         zIndex: 10
       }}>
@@ -76,12 +76,13 @@ export default function DestinationsPage() {
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
             width: "100%",
-            padding: "16px 20px",
+            padding: "clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 20px)",
             borderRadius: "12px",
             border: "none",
-            fontSize: "1rem",
+            fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
             boxShadow: "0 8px 24px rgba(155, 74, 26, 0.15)",
-            outline: "none"
+            outline: "none",
+            boxSizing: "border-box"
           }}
         />
       </div>
@@ -90,16 +91,19 @@ export default function DestinationsPage() {
       <section style={{
         maxWidth: "1200px",
         margin: "0 auto",
-        padding: "60px 40px 40px"
+        padding: "clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px) clamp(26px, 5vw, 40px)",
+        width: "100%",
+        boxSizing: "border-box"
       }}>
         {/* Results Count */}
         <div style={{
-          marginBottom: "30px",
-          padding: "16px",
+          marginBottom: "clamp(20px, 4vw, 30px)",
+          padding: "clamp(12px, 2vw, 16px)",
           background: "rgba(155, 74, 26, 0.1)",
           borderRadius: "8px",
           color: "var(--dark)",
-          fontWeight: "600"
+          fontWeight: "600",
+          fontSize: "clamp(0.9rem, 2.5vw, 1rem)"
         }}>
           Found {filteredDestinations.length} destination{filteredDestinations.length !== 1 ? "s" : ""}
         </div>
@@ -128,8 +132,8 @@ export default function DestinationsPage() {
         {!loading && !error && filteredDestinations.length > 0 ? (
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "32px"
+            gridTemplateColumns: "repeat(auto-fill, minmax(clamp(260px, 85vw, 300px), 1fr))",
+            gap: "clamp(16px, 3vw, 32px)"
           }}>
             {filteredDestinations.map(destination => (
               <div
@@ -182,7 +186,7 @@ export default function DestinationsPage() {
                         transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
                       }}
                       onError={(e) => {
-                        e.target.src = '/assets/fallback.jpg';
+                        e.target.src = '/error.svg';
                       }}
                       onLoad={(e) => {}}
                       onMouseOver={(e) => e.target.style.transform = "scale(1.12)"}

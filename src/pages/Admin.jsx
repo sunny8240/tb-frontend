@@ -1127,14 +1127,14 @@ export default function Admin() {
                     <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
                       {destPreviews.map((p, idx) => (
                         <div key={`local-${idx}`} style={{ position: 'relative' }}>
-                          <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                          <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                           <button onClick={() => removeSelectedPreview(idx, 'destination')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                         </div>
                       ))}
 
                       {parseImageUrls(newDestination.images).map((u) => (
                         <div key={u} style={{ position: 'relative' }}>
-                          <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                          <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                           <button onClick={() => removeImageUrl(u, 'destination')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                         </div>
                       ))}
@@ -1448,14 +1448,14 @@ export default function Admin() {
                         <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
                           {destPreviews.map((p, idx) => (
                             <div key={`local-${idx}`} style={{ position: 'relative' }}>
-                              <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                              <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                               <button onClick={() => removeSelectedPreview(idx, 'destination')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                             </div>
                           ))}
 
                           {parseImageUrls(newDestination.images).map((u) => (
                             <div key={u} style={{ position: 'relative' }}>
-                              <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                              <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                               <button onClick={() => removeImageUrl(u, 'destination')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                             </div>
                           ))}
@@ -1742,14 +1742,14 @@ export default function Admin() {
                     <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
                       {statePreviews.map((p, idx) => (
                         <div key={`local-state-${idx}`} style={{ position: 'relative' }}>
-                          <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                          <img src={p.url} alt={p.name} style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                           <button onClick={() => removeSelectedPreview(idx, 'state')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                         </div>
                       ))}
 
                       {parseImageUrls(newState.images).map((u) => (
                         <div key={u} style={{ position: 'relative' }}>
-                          <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} />
+                          <img src={u} alt="preview" style={{ width: 96, height: 64, objectFit: 'cover', borderRadius: 6, border: '1px solid #ddd' }} onError={(e) => { e.target.src = '/error.svg'; }} />
                           <button onClick={() => removeImageUrl(u, 'state')} type="button" style={{ position: 'absolute', top: -8, right: -8, background: '#f44336', color: 'white', border: 'none', borderRadius: 12, width: 24, height: 24, cursor: 'pointer' }}>×</button>
                         </div>
                       ))}
@@ -1960,7 +1960,7 @@ export default function Admin() {
                   marginBottom: "20px",
                   boxShadow: "0 8px 20px rgba(0,0,0,0.12)"
                 }}>
-                  <img src={createdItem.images[0]} alt={successItemName} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img src={createdItem.images[0]} alt={successItemName} style={{ width: "100%", height: "100%", objectFit: "cover" }} onError={(e) => { e.target.src = '/error.svg'; }} />
                 </div>
               )}
 

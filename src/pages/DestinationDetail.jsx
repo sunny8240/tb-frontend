@@ -252,7 +252,7 @@ export default function DestinationDetail() {
                           src={d.images?.[0] || '/assets/fallback.jpg'} 
                           alt={d.name} 
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                          onError={(e) => e.target.src = '/assets/fallback.jpg'} 
+                          onError={(e) => e.target.src = '/error.svg'} 
                         />
                         {d.distance && (
                           <div style={{

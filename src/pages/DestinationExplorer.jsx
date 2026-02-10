@@ -76,18 +76,18 @@ export default function DestinationExplorer() {
       <section style={{
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
-        padding: "60px 40px",
+        padding: "clamp(40px, 8vw, 60px) clamp(20px, 4vw, 40px)",
         textAlign: "center"
       }}>
         <h1 style={{
           fontFamily: "var(--heading)",
-          fontSize: "3rem",
-          marginBottom: "16px"
+          fontSize: "clamp(2rem, 7vw, 3rem)",
+          marginBottom: "clamp(12px, 2vw, 16px)"
         }}>
           Explore Destinations
         </h1>
         <p style={{
-          fontSize: "1.1rem",
+          fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)",
           opacity: 0.9,
           maxWidth: "600px",
           margin: "0 auto"
@@ -98,12 +98,14 @@ export default function DestinationExplorer() {
 
       {/* Search Section */}
       <section style={{
-        padding: "40px",
+        padding: "clamp(26px, 5vw, 40px)",
         maxWidth: "1300px",
-        margin: "0 auto"
+        margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box"
       }}>
         {/* Search Bar */}
-        <div style={{ marginBottom: "30px" }}>
+        <div style={{ marginBottom: "clamp(20px, 4vw, 30px)" }}>
           <input
             type="text"
             placeholder="Search by destination name, state..."
@@ -111,12 +113,13 @@ export default function DestinationExplorer() {
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               width: "100%",
-              padding: "16px 20px",
-              fontSize: "1rem",
+              padding: "clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 20px)",
+              fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
               border: "2px solid var(--accent)",
               borderRadius: "8px",
               fontFamily: "var(--body)",
-              transition: "var(--transition)"
+              transition: "var(--transition)",
+              boxSizing: "border-box"
             }}
             onFocus={(e) => e.target.style.boxShadow = "0 0 0 3px rgba(155, 74, 26, 0.1)"}
             onBlur={(e) => e.target.style.boxShadow = "none"}
@@ -126,17 +129,18 @@ export default function DestinationExplorer() {
         {/* Filter Section */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "20px",
-          marginBottom: "40px"
+          gridTemplateColumns: "repeat(auto-fit, minmax(clamp(200px, 80vw, 280px), 1fr))",
+          gap: "clamp(12px, 3vw, 20px)",
+          marginBottom: "clamp(24px, 6vw, 40px)"
         }}>
           {/* Category Filter */}
           <div>
             <label style={{
               display: "block",
               fontWeight: "600",
-              marginBottom: "10px",
-              color: "var(--dark)"
+              marginBottom: "clamp(8px, 2vw, 10px)",
+              color: "var(--dark)",
+              fontSize: "clamp(0.9rem, 2.5vw, 1rem)"
             }}>
               Filter by Category
             </label>
@@ -145,11 +149,11 @@ export default function DestinationExplorer() {
               onChange={(e) => setSelectedCategory(e.target.value)}
               style={{
                 width: "100%",
-                padding: "12px",
+                padding: "clamp(10px, 2.5vw, 12px)",
                 border: "2px solid var(--accent)",
                 borderRadius: "6px",
                 fontFamily: "var(--body)",
-                fontSize: "1rem",
+                fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
                 background: "white",
                 cursor: "pointer"
               }}
@@ -168,8 +172,9 @@ export default function DestinationExplorer() {
             <label style={{
               display: "block",
               fontWeight: "600",
-              marginBottom: "10px",
-              color: "var(--dark)"
+              marginBottom: "clamp(8px, 2vw, 10px)",
+              color: "var(--dark)",
+              fontSize: "clamp(0.9rem, 2.5vw, 1rem)"
             }}>
               Filter by State
             </label>
@@ -178,11 +183,11 @@ export default function DestinationExplorer() {
               onChange={(e) => setSelectedState(e.target.value)}
               style={{
                 width: "100%",
-                padding: "12px",
+                padding: "clamp(10px, 2.5vw, 12px)",
                 border: "2px solid var(--accent)",
                 borderRadius: "6px",
                 fontFamily: "var(--body)",
-                fontSize: "1rem",
+                fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
                 background: "white",
                 cursor: "pointer"
               }}
@@ -206,13 +211,13 @@ export default function DestinationExplorer() {
               }}
               style={{
                 width: "100%",
-                padding: "12px",
+                padding: "clamp(10px, 2.5vw, 12px)",
                 background: "var(--muted)",
                 color: "var(--paper)",
                 border: "none",
                 borderRadius: "6px",
                 fontFamily: "var(--body)",
-                fontSize: "1rem",
+                fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
                 fontWeight: "600",
                 cursor: "pointer",
                 transition: "var(--transition)"
@@ -261,8 +266,8 @@ export default function DestinationExplorer() {
         {!loading && !error && filteredDestinations.length > 0 ? (
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: "24px"
+            gridTemplateColumns: "repeat(auto-fill, minmax(clamp(250px, 85vw, 280px), 1fr))",
+            gap: "clamp(16px, 3vw, 24px)"
           }}>
             {filteredDestinations.map(destination => (
               <div
@@ -311,7 +316,7 @@ export default function DestinationExplorer() {
                         objectFit: "cover",
                         transition: "var(--transition)"
                       }}
-                      onError={(e) => { e.target.src = '/assets/fallback.jpg'; }}
+                      onError={(e) => { e.target.src = '/error.svg'; }}
                       onMouseOver={(e) => e.target.style.transform = "scale(1.1)"}
                       onMouseOut={(e) => e.target.style.transform = "scale(1)"}
                     />

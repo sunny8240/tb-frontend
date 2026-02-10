@@ -6,10 +6,14 @@ export default function About() {
         <h1 className="about-title">TravelBharat</h1>
         <p
           style={{
-            fontSize: "1.3rem",
-            opacity: 0.9,
+            fontSize: "clamp(1rem, 4vw, 1.3rem)",
+            opacity: 0.95,
             maxWidth: "600px",
             margin: "0 auto",
+            lineHeight: "1.6",
+            letterSpacing: "0.3px",
+            paddingLeft: "12px",
+            paddingRight: "12px",
           }}
         >
           Explore India State by State - Your Ultimate Tourism Information
@@ -20,7 +24,7 @@ export default function About() {
       {/* Mission Section */}
       <section
         style={{
-          padding: "80px 40px",
+          padding: "clamp(40px, 8vw, 80px) clamp(20px, 5vw, 40px)",
           maxWidth: "1200px",
           margin: "0 auto",
         }}
@@ -35,7 +39,7 @@ export default function About() {
             style={{
               fontFamily: "var(--heading)",
               color: "var(--accent)",
-              fontSize: "2.5rem",
+              fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
               marginBottom: "20px",
               fontWeight: "700",
             }}
@@ -54,7 +58,13 @@ export default function About() {
         </div>
 
         <div className="about-intro">
-          <p>
+          <p
+            style={{
+              fontSize: "clamp(0.95rem, 3vw, 1.05rem)",
+              lineHeight: "1.8",
+              color: "var(--muted)",
+            }}
+          >
             TravelBharat is a centralized tourism information platform that
             provides comprehensive, state-wise and city-wise details of tourist
             destinations across India. We aim to be a digital travel
@@ -198,12 +208,12 @@ export default function About() {
 
       {/* Problem Statement */}
       <section className="about-section alt-bg">
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
           <h2
             style={{
               fontFamily: "var(--heading)",
               color: "var(--accent)",
-              fontSize: "2.5rem",
+              fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
               marginBottom: "40px",
               textAlign: "center",
             }}
@@ -317,19 +327,20 @@ export default function About() {
 
       {/* Our Team & Values */}
       <section className="about-section">
-        <h2
-          style={{
-            fontFamily: "var(--heading)",
-            color: "var(--accent)",
-            fontSize: "2.5rem",
-            marginBottom: "40px",
-            textAlign: "center",
-          }}
-        >
-          Our Core Values
-        </h2>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(20px, 5vw, 40px)" }}>
+          <h2
+            style={{
+              fontFamily: "var(--heading)",
+              color: "var(--accent)",
+              fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
+              marginBottom: "40px",
+              textAlign: "center",
+            }}
+          >
+            Our Core Values
+          </h2>
 
-        <div className="about-features">
+          <div className="about-features">
           {[
             {
               value: "Accuracy",
@@ -435,6 +446,7 @@ export default function About() {
               </div>
             );
           })}
+          </div>
         </div>
       </section>
 
@@ -442,19 +454,31 @@ export default function About() {
       <section
         className="about-cta"
         style={{
-          marginLeft: "33rem",
+          background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
+          color: "white",
+          padding: "60px 20px",
+          textAlign: "center",
+          marginTop: "80px",
         }}
       >
         <h2
           style={{
             fontFamily: "var(--heading)",
-            fontSize: "2.5rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.5rem)",
             marginBottom: "20px",
+            maxWidth: "800px",
+            margin: "0 auto 20px",
           }}
         >
           Ready to Explore India?
         </h2>
-        <p style={{ fontSize: "1.1rem", marginBottom: "30px", opacity: 0.9 }}>
+        <p style={{ 
+          fontSize: "clamp(1rem, 4vw, 1.1rem)", 
+          marginBottom: "30px", 
+          opacity: 0.95,
+          maxWidth: "600px",
+          margin: "0 auto 30px",
+        }}>
           Start your journey through India's most incredible destinations
         </p>
         <a
@@ -467,10 +491,9 @@ export default function About() {
             borderRadius: "6px",
             textDecoration: "none",
             fontWeight: "bold",
-            fontSize: "1rem",
+            fontSize: "clamp(0.95rem, 3vw, 1rem)",
             transition: "var(--transition)",
             cursor: "pointer",
-            marginLeft: "8rem",
           }}
           onMouseOver={(e) => {
             e.target.style.transform = "scale(1.05)";

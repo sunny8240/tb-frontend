@@ -218,7 +218,7 @@ export default function HomeSearch() {
                                                                 src={destination.images && destination.images[0]}
                                                                 alt={destination.name}
                                                                 onError={(e) => {
-                                                                    e.target.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=100&fit=crop';
+                                                                    e.target.src = '/error.svg';
                                                                 }}
                                                             />
                                                         </div>

@@ -86,7 +86,7 @@ export default function AutoGallery({ items = [], speed = 30, label = 'Explore',
                 title={it.name}
                 aria-label={`Open ${it.name}`}
               >
-                <img src={it.image} alt={it.name} />
+                <img src={it.image} alt={it.name} onError={(e) => { e.target.src = '/error.svg'; }} />
                 <div className="gallery-label">{it.name}</div>
               </button>
             ))}

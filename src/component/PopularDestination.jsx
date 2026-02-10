@@ -109,7 +109,7 @@ export default function PopularDestination() {
                                         objectFit: 'cover',
                                         transition: 'var(--transition)'
                                     }}
-                                    onError={(e) => { e.target.src = '/assets/fallback.jpg'; }}
+                                    onError={(e) => { e.target.src = '/error.svg'; }}
                                     onMouseOver={(e) => e.target.style.transform = 'scale(1.1)'}
                                     onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
                                 />

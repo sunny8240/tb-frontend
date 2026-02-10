@@ -143,7 +143,7 @@ export default function States() {
                         objectFit: 'cover',
                         transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
                       }}
-                      onError={(e) => { e.target.src = '/assets/fallback.jpg'; }}
+                      onError={(e) => { e.target.src = '/error.svg'; }}
                       onMouseOver={(e) => e.target.style.transform = 'scale(1.12) rotate(0.5deg)'}
                       onMouseOut={(e) => e.target.style.transform = 'scale(1) rotate(0)'}
                     />

@@ -84,20 +84,21 @@ export default function StateDestinations() {
       <section style={{
         background: "linear-gradient(135deg, var(--accent) 0%, var(--dark) 100%)",
         color: "var(--paper)",
-        padding: "60px 40px",
+        padding: "clamp(40px, 8vw, 60px) clamp(20px, 4vw, 40px)",
         textAlign: "center"
       }}>
         <button 
           onClick={() => navigate(-1)}
           style={{
-            marginBottom: "20px",
+            marginBottom: "clamp(12px, 2vw, 20px)",
             background: "rgba(255, 255, 255, 0.2)",
             color: "var(--paper)",
             border: "none",
-            padding: "10px 20px",
+            padding: "clamp(8px, 1.5vw, 10px) clamp(14px, 2vw, 20px)",
             borderRadius: "6px",
             cursor: "pointer",
             fontWeight: "600",
+            fontSize: "clamp(0.9rem, 2vw, 1rem)",
             transition: "var(--transition)"
           }}
           onMouseOver={(e) => e.target.style.background = "rgba(255, 255, 255, 0.3)"}
@@ -108,13 +109,13 @@ export default function StateDestinations() {
         
         <h1 style={{
           fontFamily: "var(--heading)",
-          fontSize: "3rem",
-          marginBottom: "16px"
+          fontSize: "clamp(2rem, 7vw, 3rem)",
+          marginBottom: "clamp(12px, 2vw, 16px)"
         }}>
           {state.name}
         </h1>
         <p style={{
-          fontSize: "1.1rem",
+          fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)",
           opacity: 0.9
         }}>
           Discover {destinations.length} amazing destination{destinations.length !== 1 ? "s" : ""} in {state.name}
@@ -122,7 +123,7 @@ export default function StateDestinations() {
       </section>
 
       {/* State Overview */}
-      <section className="state-overview" style={{ padding: '28px 40px', maxWidth: '1100px', margin: '20px auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '24px' }}>
+      <section className="state-overview" style={{ padding: 'clamp(20px, 4vw, 28px) clamp(20px, 4vw, 40px)', maxWidth: '1100px', margin: '20px auto', display: 'grid', gridTemplateColumns: 'clamp(0px, calc(100% - 380px), 1fr) clamp(280px, 30%, 320px)', gap: 'clamp(16px, 3vw, 24px)', boxSizing: 'border-box' }}>
         <div style={{ background: 'white', padding: 24, borderRadius: 12, boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
           <h2 style={{ fontFamily: 'var(--heading)', marginTop: 0 }}>{state.name}</h2>
           <p style={{ color: 'var(--muted)', lineHeight: 1.6 }}>{state.description}</p>
@@ -150,7 +151,7 @@ export default function StateDestinations() {
                 src={img} 
                 alt={`${state.name} ${i}`} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                onError={(e) => e.target.src = '/assets/fallback.jpg'} 
+                onError={(e) => e.target.src = '/error.svg'} 
               />
             </div>
           ))}
@@ -175,15 +176,17 @@ export default function StateDestinations() {
 
       {/* Content */}
       <section style={{
-        padding: "60px 40px",
+        padding: "clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px)",
         maxWidth: "1300px",
-        margin: "0 auto"
+        margin: "0 auto",
+        width: "100%",
+        boxSizing: "border-box"
       }}>
         {destinations.length > 0 ? (
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '32px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(260px, 85vw, 300px), 1fr))',
+            gap: 'clamp(16px, 3vw, 32px)'
           }}>
             {destinations.map(destination => (
               <div
@@ -235,7 +238,7 @@ export default function StateDestinations() {
                         objectFit: 'cover',
                         transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
                       }}
-                      onError={(e) => { e.target.src = '/assets/fallback.jpg'; }}
+                      onError={(e) => { e.target.src = '/error.svg'; }}
                       onMouseOver={(e) => e.target.style.transform = 'scale(1.12) rotate(0.5deg)'}
                       onMouseOut={(e) => e.target.style.transform = 'scale(1) rotate(0)'}
                     />

@@ -49,19 +49,19 @@ export default function States() {
         <>
             <StatesSearch onSearch={handleSearch} />
             <section style={{
-                padding: '60px 40px',
+                padding: 'clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px)',
                 maxWidth: '1300px',
                 margin: '0 auto'
             }}>
                 <h2 style={{
                     textAlign: 'center',
-                    fontSize: '2.8rem',
+                    fontSize: 'clamp(1.8rem, 7vw, 2.8rem)',
                     fontFamily: 'var(--heading)',
                     color: 'var(--dark)',
-                    marginBottom: '0.5rem'
+                    marginBottom: 'clamp(0.4rem, 1vw, 0.5rem)'
                 }}>Explore Indian States</h2>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 12, alignItems: 'center', marginBottom: 22 }}>
-                    <div style={{ color: 'var(--muted)', fontSize: '0.98rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 12, alignItems: 'center', marginBottom: 'clamp(16px, 3vw, 22px)' }}>
+                    <div style={{ color: 'var(--muted)', fontSize: 'clamp(0.85rem, 2vw, 0.98rem)' }}>
                         {loading ? 'Loading...' : `${displayStates.length} states`}
                     </div>
                 </div>
