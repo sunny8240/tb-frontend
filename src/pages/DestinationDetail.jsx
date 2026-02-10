@@ -20,11 +20,9 @@ export default function DestinationDetail() {
         setLoading(true);
         let response;
         
-        // Try to fetch by slug first
         try {
           response = await apiClient.destinations.getBySlug(id);
         } catch (err) {
-          // If slug lookup fails, try by ID (fallback for destinations without slugs)
           response = await apiClient.destinations.getById(id);
         }
         
@@ -45,11 +43,9 @@ export default function DestinationDetail() {
             const nearbyData = Array.isArray(nearbyResponse.data) ? nearbyResponse.data : nearbyResponse.data?.data || [];
             nearby = nearbyData.slice(0, 6);
           } catch (err) {
-            // Fall back to state destinations if nearby search fails
           }
         }
         
-        // Fallback to state destinations if no nearby found
         if (nearby.length === 0 && data.state && data.state._id) {
           const stateResponse = await apiClient.destinations.getByState(data.state._id);
           const stateDestArray = stateResponse.data || stateResponse || [];
