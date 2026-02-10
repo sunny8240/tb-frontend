@@ -1,16 +1,32 @@
-# React + Vite
+﻿# TravelBharat Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React frontend for TravelBharat, a web application for exploring Indian states and tourist destinations.
 
-Currently, two official plugins are available:
+## Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Install dependencies: 
+pm install
+2. Create .env file with backend API URL: VITE_API_URL=http://localhost:5000/api
+3. Start development server: 
+pm run dev
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Browse states and destinations with detailed information
+- Search and filter destinations by category or state
+- Image gallery with lightbox viewer
+- Admin dashboard for managing content
+- Responsive design for all devices
+- User authentication for admin access
 
-## Expanding the ESLint configuration
+## Pages
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Home - Hero section with marquee gallery
+- States - Browse all Indian states
+- Destinations - Explore tourist destinations
+- Admin - Manage states and destinations (protected)
+
+## Build & Deploy
+
+Run 
+pm run build for production, then deploy to Vercel or similar hosting.

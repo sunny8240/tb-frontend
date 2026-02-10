@@ -78,9 +78,14 @@ export default function Admin() {
       setDestinations(Array.isArray(destArray) ? destArray : []);
       setError(null);
     } catch (err) {
-      setError(err.message || "Failed to load data");
+      const msg = (err && err.message) ? err.message : "Failed to load data";
+      setError(msg);
       setStates([]);
       setDestinations([]);
+      if (/401|Not authorized|Token is not valid|Invalid credentials/i.test(msg)) {
+        try { logout(); } catch(e) {}
+        navigate('/login');
+      }
     } finally {
       setLoading(false);
     }
@@ -98,11 +103,9 @@ export default function Admin() {
   };
 
  
-  // Refs for hidden file inputs
   const destFileInputRef = useRef(null);
   const stateFileInputRef = useRef(null);
 
-  // Selected files & previews (client-side) - upload deferred until form submit
   const [destSelectedFiles, setDestSelectedFiles] = useState([]);
   const [destPreviews, setDestPreviews] = useState([]);
   const [stateSelectedFiles, setStateSelectedFiles] = useState([]);

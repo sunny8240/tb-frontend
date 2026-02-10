@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function About() {
   return (
     <div style={{ paddingTop: "80px", background: "var(--paper)" }}>
@@ -481,8 +483,8 @@ export default function About() {
         }}>
           Start your journey through India's most incredible destinations
         </p>
-        <a
-          href="/states"
+        <Link
+          to="/states"
           style={{
             display: "inline-block",
             background: "white",
@@ -496,14 +498,14 @@ export default function About() {
             cursor: "pointer",
           }}
           onMouseOver={(e) => {
-            e.target.style.transform = "scale(1.05)";
+            e.currentTarget.style.transform = "scale(1.05)";
           }}
           onMouseOut={(e) => {
-            e.target.style.transform = "scale(1)";
+            e.currentTarget.style.transform = "scale(1)";
           }}
         >
           Explore States →
-        </a>
+        </Link>
       </section>
     </div>
   );
